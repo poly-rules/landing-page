@@ -1,22 +1,53 @@
+import React from "react";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
-import HeroGraph from "./components/HeroGraph";
 import RSVPButton from "./components/RSVPButton";
+
+// ─── Glass style constants ────────────────────────────────────────────────────
+
+const glass = {
+  background: "rgba(255,255,255,0.04)",
+  backdropFilter: "blur(20px)",
+  WebkitBackdropFilter: "blur(20px)",
+  border: "1px solid rgba(255,255,255,0.10)",
+  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07)",
+} as const;
+
+const glassSubtle = {
+  background: "rgba(255,255,255,0.025)",
+  backdropFilter: "blur(16px)",
+  WebkitBackdropFilter: "blur(16px)",
+  border: "1px solid rgba(255,255,255,0.07)",
+  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
+} as const;
+
+function glassAccent(hex: string) {
+  return {
+    background: `color-mix(in srgb, ${hex} 6%, transparent)`,
+    backdropFilter: "blur(20px)",
+    WebkitBackdropFilter: "blur(20px)",
+    border: `1px solid color-mix(in srgb, ${hex} 22%, transparent)`,
+    boxShadow: `inset 0 1px 0 rgba(255,255,255,0.06), 0 0 0 0 transparent`,
+  } as const;
+}
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
 function Icon({
   d,
   className = "w-5 h-5",
+  style,
 }: {
   d: string | string[];
   className?: string;
+  style?: React.CSSProperties;
 }) {
   const paths = Array.isArray(d) ? d : [d];
   return (
     <svg
       viewBox="0 0 24 24"
       className={className}
+      style={style}
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
@@ -56,53 +87,86 @@ const icons = {
 function Hero() {
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-40 pointer-events-none"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 L60 0 L60 1 L0 1Z' fill='%23ffffff08'/%3E%3Cpath d='M0 0 L0 60 L1 60 L1 0Z' fill='%23ffffff08'/%3E%3C/svg%3E\")",
-        }}
+      {/* Background video */}
+      <video
+        src="/high-end-tech.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        style={{ opacity: 0.18 }}
       />
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 text-[#00D4FF] text-xs font-medium mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
-              Early Access
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white mb-6">
-              Your business logic.
-              <br />
-              <span className="text-[#00D4FF]">Owned by your team.</span>
-            </h1>
-            <p className="text-lg text-gray-400 leading-relaxed mb-4 max-w-xl mx-auto lg:mx-0">
-              Dflow is a visual workflow editor that lets business teams build,
-              validate, and publish their own rules — without writing code or
-              waiting on engineering.
-            </p>
-            <p className="text-sm text-gray-500 leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0">
-              Built-in AI helps you describe what you need and understand what
-              went wrong. The engine makes sure nothing broken reaches
-              production.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <RSVPButton className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00D4FF] text-[#0D0F14] font-semibold rounded-lg hover:bg-[#00D4FF]/90 transition-colors text-sm cursor-pointer">
-                <Icon d={icons.arrowRight} className="w-4 h-4" />
-                Join the early access list
-              </RSVPButton>
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/20 text-gray-300 font-medium rounded-lg hover:border-white/40 hover:text-white transition-colors text-sm"
-              >
-                See how it works
-              </a>
-            </div>
-            <p className="mt-4 text-xs text-gray-600 text-center lg:text-left">
-              No commitment. We&apos;ll reach out when your spot is ready.
-            </p>
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0D0F14]/60 via-[#0D0F14]/40 to-[#0D0F14] pointer-events-none" />
+
+      <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
+        {/* Centered text block */}
+        <div className="text-center mb-16">
+          {/* Glass badge */}
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[#00D4FF] text-xs font-medium mb-8"
+            style={glassAccent("#00D4FF")}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
+            Early Access — Visual Rule Engine
           </div>
-          <div className="flex justify-center lg:justify-end">
-            <HeroGraph />
+
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight tracking-tight text-white mb-5">
+            Your business logic.
+            <br />
+            <span
+              style={{
+                background: "linear-gradient(135deg, #fff 0%, #a78bfa 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Owned by your team.
+            </span>
+          </h1>
+          <p className="text-lg text-gray-400 leading-relaxed mb-10 max-w-2xl mx-auto">
+            Build and publish decision flows without code — validated before
+            they ship, traceable after they run.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <RSVPButton className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#7C3AED] text-white font-semibold rounded-xl hover:bg-[#7C3AED]/90 transition-all shadow-lg hover:shadow-[#7C3AED]/40 text-sm cursor-pointer">
+              <Icon d={icons.arrowRight} className="w-4 h-4" />
+              Join the early access list
+            </RSVPButton>
+            {/* Ghost glass CTA */}
+            <a
+              href="#how-it-works"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-gray-300 font-medium hover:text-white transition-colors text-sm"
+              style={glassSubtle}
+            >
+              See how it works
+            </a>
+          </div>
+        </div>
+
+        {/* Video showcase */}
+        <div className="relative group">
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#7C3AED] to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 pointer-events-none" />
+          <div className="relative rounded-3xl p-2 md:p-4 shadow-2xl overflow-hidden" style={glass}>
+            <div className="rounded-2xl overflow-hidden border border-white/5 shadow-inner">
+              <video
+                src="https://opal.google/board/blobs/e1b527cd-2e8e-4ff5-9c17-88543813ae97"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-auto block"
+              />
+            </div>
+            {/* Floating status badge */}
+            <div
+              className="absolute top-8 left-8 hidden lg:flex items-center gap-3 px-4 py-2 rounded-xl"
+              style={glass}
+            >
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-xs font-medium text-white/80">Live preview</span>
+            </div>
           </div>
         </div>
       </div>
@@ -112,24 +176,33 @@ function Hero() {
 
 function TrustBar() {
   const items = [
-    { icon: icons.check, label: "No code required" },
-    { icon: icons.shieldCheck, label: "Validated before it ships" },
-    { icon: icons.history, label: "Every change traceable" },
+    { icon: icons.check, label: "No code required", accent: "#00D4FF" },
+    { icon: icons.shieldCheck, label: "Validated before it ships", accent: "#a78bfa" },
+    { icon: icons.history, label: "Every change is traceable", accent: "#4ade80" },
   ];
   return (
-    <section className="border-y border-white/5 bg-white/[0.02] py-6">
+    <section className="py-8">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <ul className="flex flex-wrap justify-center gap-x-12 gap-y-4 text-sm text-gray-500 font-medium">
-          {items.map(({ icon, label }) => (
-            <li
-              key={label}
-              className="flex items-center gap-2 hover:text-gray-300 transition-colors"
-            >
-              <Icon d={icon} className="w-4 h-4" />
-              {label}
-            </li>
-          ))}
-        </ul>
+        {/* Glass strip */}
+        <div
+          className="rounded-2xl px-8 py-5"
+          style={glassSubtle}
+        >
+          <ul className="flex flex-wrap justify-center gap-x-12 gap-y-4">
+            {items.map(({ icon, label, accent }) => (
+              <li key={label} className="flex items-center gap-3">
+                {/* Accent glass icon chip */}
+                <span
+                  className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                  style={glassAccent(accent)}
+                >
+                  <Icon d={icon} className="w-3.5 h-3.5" style={{ color: accent }} />
+                </span>
+                <span className="text-sm font-medium text-gray-400">{label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
@@ -138,24 +211,32 @@ function TrustBar() {
 function Problem() {
   return (
     <section className="py-24 lg:py-28">
-      <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-        <p className="text-[#00D4FF] text-sm font-semibold tracking-widest uppercase mb-3">
-          The problem
-        </p>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-          Business logic shouldn&apos;t live where only engineers can reach it
-        </h2>
-        <p className="text-gray-400 leading-relaxed text-lg mb-4">
-          Routing rules, approval conditions, escalation thresholds — this logic
-          drives your business, but it&apos;s buried in code. Every change needs
-          a ticket, a sprint, and a deployment. Every incident needs engineering
-          to explain what happened.
-        </p>
-        <p className="text-gray-500 leading-relaxed">
-          Most automation tools promise to fix this but replace one black box
-          with another. You still can&apos;t see what&apos;s running, change it
-          yourself, or understand why it failed without technical help.
-        </p>
+      <div className="max-w-3xl mx-auto px-6 lg:px-8">
+        {/* Glass card wrapping the problem statement */}
+        <div className="relative rounded-3xl p-10 lg:p-14 text-center" style={glass}>
+          {/* Subtle top glow */}
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-px pointer-events-none"
+            style={{ background: "linear-gradient(90deg, transparent, rgba(0,212,255,0.5), transparent)" }}
+          />
+          <p className="text-[#00D4FF] text-sm font-semibold tracking-widest uppercase mb-3">
+            Sound familiar?
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Business logic shouldn&apos;t live where only engineers can reach it
+          </h2>
+          <p className="text-gray-400 leading-relaxed text-lg mb-4">
+            Routing rules, approval conditions, escalation thresholds — this logic
+            drives your business, but it&apos;s buried in code. Every change needs
+            a ticket, a sprint, and a deployment. Every incident needs engineering
+            to explain what happened.
+          </p>
+          <p className="text-gray-500 leading-relaxed">
+            Most automation tools promise to fix this but replace one black box
+            with another. Dflow is different: your team builds the rules, tracks every
+            version, and understands every failure — without touching code.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -165,27 +246,31 @@ function HowItWorks() {
   const steps = [
     {
       num: "01",
+      accent: "#00D4FF",
       title: "Engineering sets the guardrails",
       desc: "Define the approved operations once. Everything built after that stays within bounds.",
     },
     {
       num: "02",
+      accent: "#a78bfa",
       title: "Your team builds the flow",
-      desc: "Drag nodes into place or describe the rule — the AI drafts it. Review and publish yourself.",
+      desc: "Drag nodes into place or describe the rule — the AI drafts the flow. Review and publish yourself.",
     },
     {
       num: "03",
+      accent: "#f59e0b",
       title: "Nothing broken ships",
       desc: "Dflow checks every flow before it goes live. Errors are caught here, not in production.",
     },
     {
       num: "04",
+      accent: "#4ade80",
       title: "Run it. Trace it. Fix it fast.",
       desc: "Full execution history on every run. When something breaks, ask the AI what happened.",
     },
   ];
   return (
-    <section id="how-it-works" className="py-24 bg-white/[0.015]">
+    <section id="how-it-works" className="py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-[#00D4FF] text-sm font-semibold tracking-widest uppercase mb-3">
@@ -195,13 +280,33 @@ function HowItWorks() {
             From idea to production in four steps
           </h2>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map(({ num, title, desc }) => (
-            <div key={num} className="text-center md:text-left">
-              <div className="text-6xl font-black text-[#00D4FF]/10 leading-none mb-4 font-mono">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {steps.map(({ num, accent, title, desc }) => (
+            <div
+              key={num}
+              className="relative rounded-2xl p-7 overflow-hidden group hover:scale-[1.02] transition-transform duration-300"
+              style={glassAccent(accent)}
+            >
+              {/* Watermark number */}
+              <div
+                className="absolute -top-2 -right-1 text-8xl font-black leading-none select-none pointer-events-none"
+                style={{ color: accent, opacity: 0.07 }}
+              >
                 {num}
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
+              {/* Accent top edge line */}
+              <div
+                className="absolute top-0 left-6 right-6 h-px rounded-full"
+                style={{ background: `linear-gradient(90deg, transparent, ${accent}60, transparent)` }}
+              />
+              {/* Step chip */}
+              <span
+                className="inline-block text-xs font-bold tracking-widest uppercase px-2.5 py-1 rounded-full mb-5"
+                style={{ backgroundColor: `${accent}18`, color: accent }}
+              >
+                {num}
+              </span>
+              <h3 className="text-base font-semibold text-white mb-2 leading-snug">{title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
             </div>
           ))}
@@ -218,7 +323,7 @@ function BenefitsByRole() {
       label: "Operations Lead",
       headline: "Stop waiting on a ticket",
       bullets: [
-        "Build and publish workflow changes directly in the visual editor",
+        "Build and publish rule changes directly in the visual editor",
         "Describe a rule in plain language — the AI drafts it for you to review",
         "When something breaks, ask what happened instead of filing a request",
       ],
@@ -226,7 +331,7 @@ function BenefitsByRole() {
     {
       accent: "#a78bfa",
       label: "Business Lead",
-      headline: "Full visibility into what's running",
+      headline: "Full visibility, no surprises",
       bullets: [
         "See every published version, when it went live, and what changed",
         "Understand failures in plain language — no engineering translation needed",
@@ -236,11 +341,11 @@ function BenefitsByRole() {
     {
       accent: "#4ade80",
       label: "CTO / Engineering Lead",
-      headline: "Empower your team without losing control",
+      headline: "Move fast. Break nothing.",
       bullets: [
-        "Define the catalog once — AI and business users can only operate within it",
+        "Set the catalog once — your team and the AI can only build within it",
         "Nothing ships unless it passes compile-time type checking",
-        "Full version history and execution trace for every flow, always",
+        "Full version history and execution trace on every flow, always",
       ],
     },
   ];
@@ -249,7 +354,7 @@ function BenefitsByRole() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-[#00D4FF] text-sm font-semibold tracking-widest uppercase mb-3">
-            Built for every stakeholder
+            Who it&apos;s for
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
             One tool. Three teams. No more silos.
@@ -259,14 +364,28 @@ function BenefitsByRole() {
           {roles.map(({ accent, label, headline, bullets }) => (
             <div
               key={label}
-              className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-300"
+              className="relative rounded-2xl p-8 overflow-hidden group hover:scale-[1.01] transition-transform duration-300"
+              style={glassAccent(accent)}
             >
+              {/* Ambient glow blob */}
+              <div
+                className="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: `radial-gradient(circle, ${accent}20 0%, transparent 70%)` }}
+              />
+              {/* Top edge shimmer */}
+              <div
+                className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: `linear-gradient(90deg, transparent, ${accent}50, transparent)` }}
+              />
+
+              {/* Role badge */}
               <span
-                className="inline-block text-xs font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full mb-5"
-                style={{ backgroundColor: `${accent}18`, color: accent }}
+                className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5"
+                style={glassAccent(accent)}
               >
-                {label}
+                <span style={{ color: accent }}>{label}</span>
               </span>
+
               <h3 className="text-xl font-bold text-white mb-4">{headline}</h3>
               <ul className="space-y-3">
                 {bullets.map((b) => (
@@ -319,42 +438,57 @@ function Features() {
       icon: icons.history,
       title: "Versioned audit trail",
       accent: "#38bdf8",
-      desc: "Every published flow is an immutable record. Previous versions are always recoverable. You always know what ran, when it was published, and what changed.",
+      desc: "Every published flow is a permanent snapshot. Previous versions are always recoverable. You always know what ran, when it was published, and what changed.",
     },
     {
       icon: icons.puzzle,
       title: "Governed operation catalog",
       accent: "#fb923c",
-      desc: "Engineering defines the typed building blocks once. Business teams and the AI can only compose flows from approved operations — no surprises, no drift.",
+      desc: "Engineering defines the approved building blocks once. Business teams and the AI can only compose flows from that catalog — no surprises, no drift.",
     },
   ];
   return (
-    <section id="features" className="py-24 lg:py-32 bg-white/[0.015]">
+    <section id="features" className="py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-[#00D4FF] text-sm font-semibold tracking-widest uppercase mb-3">
-            Features
+            What you get
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
             Everything the team needs. Nothing they don&apos;t.
           </h2>
           <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
-            A visual editor for business teams, compile-time safety for
-            engineering, and an AI layer that helps everyone move faster.
+            A visual editor your business team can use today, compile-time
+            safety your engineering team will trust, and an AI layer that
+            helps everyone move faster.
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {cards.map(({ icon, title, accent, desc }) => (
             <div
               key={title}
-              className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-300"
+              className="group relative rounded-2xl p-8 overflow-hidden hover:scale-[1.02] transition-transform duration-300"
+              style={glass}
             >
+              {/* Hover glow */}
+              <div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: `radial-gradient(circle at 30% 20%, ${accent}0d 0%, transparent 60%)` }}
+              />
+              {/* Top shimmer */}
+              <div
+                className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: `linear-gradient(90deg, transparent, ${accent}60, transparent)` }}
+              />
+
+              {/* Glass icon container */}
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                style={{ backgroundColor: `${accent}18`, color: accent }}
+                style={glassAccent(accent)}
               >
-                <Icon d={icon} />
+                <Icon d={icon} className="w-5 h-5" style={{ color: accent }} />
               </div>
+
               <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
             </div>
@@ -394,27 +528,59 @@ function Testimonials() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-[#00D4FF] text-sm font-semibold tracking-widest uppercase mb-3">
-            Early feedback
+            In their words
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
-            What teams are saying
+            Teams that stopped filing tickets
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {quotes.map(({ quote, name, company, accent }) => (
             <div
               key={name}
-              className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8 flex flex-col gap-6"
+              className="relative rounded-2xl p-8 flex flex-col gap-6 overflow-hidden"
+              style={glass}
             >
-              <span style={{ color: accent }}>
-                <Icon d={icons.quote} className="w-6 h-6 opacity-40" />
+              {/* Top accent line */}
+              <div
+                className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: `linear-gradient(90deg, transparent, ${accent}50, transparent)` }}
+              />
+              {/* Large watermark quote icon */}
+              <div
+                className="absolute -top-2 -right-2 pointer-events-none select-none"
+                style={{ color: accent, opacity: 0.06 }}
+              >
+                <Icon d={icons.quote} className="w-24 h-24" />
+              </div>
+
+              {/* Small glass quote icon */}
+              <span
+                className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                style={glassAccent(accent)}
+              >
+                <Icon d={icons.quote} className="w-4 h-4" style={{ color: accent }} />
               </span>
+
               <p className="text-gray-300 text-sm leading-relaxed flex-1">
                 &ldquo;{quote}&rdquo;
               </p>
-              <div>
-                <p className="text-white text-sm font-semibold">{name}</p>
-                <p className="text-gray-500 text-xs">{company}</p>
+
+              {/* Author glass chip */}
+              <div
+                className="flex items-center gap-3 px-4 py-3 rounded-xl self-start"
+                style={glassSubtle}
+              >
+                <div
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
+                  style={{ background: `${accent}20`, color: accent }}
+                >
+                  {name[0]}
+                </div>
+                <div>
+                  <p className="text-white text-xs font-semibold">{name}</p>
+                  <p className="text-gray-500 text-xs">{company}</p>
+                </div>
               </div>
             </div>
           ))}
@@ -428,41 +594,44 @@ function CTABanner() {
   return (
     <section className="py-24 lg:py-32">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        <div
-          className="relative rounded-3xl overflow-hidden p-12 text-center"
-          style={{
-            background:
-              "linear-gradient(135deg, #1E293B 0%, #3b1f6e 60%, #7C3AED 100%)",
-          }}
-        >
+        <div className="relative rounded-3xl overflow-hidden p-12 lg:p-20 text-center" style={glass}>
+          {/* Ambient gradient blobs behind the glass */}
           <div
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-64 rounded-full blur-3xl pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(circle, #7C3AED33 0%, transparent 70%)",
-            }}
+            className="absolute -top-20 -left-20 w-72 h-72 rounded-full blur-3xl pointer-events-none"
+            style={{ background: "radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%)" }}
           />
+          <div
+            className="absolute -bottom-20 -right-20 w-72 h-72 rounded-full blur-3xl pointer-events-none"
+            style={{ background: "radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%)" }}
+          />
+          {/* Top shimmer */}
+          <div
+            className="absolute top-0 left-0 right-0 h-px"
+            style={{ background: "linear-gradient(90deg, transparent, rgba(167,139,250,0.6), transparent)" }}
+          />
+
           <div className="relative">
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
-              Ready to give your team the controls?
+              Your team shouldn&apos;t need a ticket to change a rule.
             </h2>
-            <p className="text-lg text-purple-200/70 mb-8 max-w-xl mx-auto">
-              Dflow is in early access. Join the list and we&apos;ll reach out
+            <p className="text-lg text-gray-400 mb-8 max-w-xl mx-auto">
+              Dflow is in early access. Join the list — we&apos;ll reach out
               when your spot is ready.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <RSVPButton className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-[#1E293B] font-bold rounded-xl hover:bg-white/90 transition-colors text-sm cursor-pointer">
+              <RSVPButton className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#7C3AED] text-white font-bold rounded-xl hover:bg-[#7C3AED]/90 transition-all shadow-lg hover:shadow-[#7C3AED]/40 text-sm cursor-pointer">
                 Join the early access list
               </RSVPButton>
               <a
                 href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-white/30 text-white font-medium rounded-xl hover:bg-white/10 transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-gray-300 font-medium hover:text-white transition-colors text-sm"
+                style={glassSubtle}
               >
                 See how it works
               </a>
             </div>
-            <p className="mt-5 text-xs text-purple-200/40">
-              No commitment. We&apos;ll reach out when your spot is ready.
+            <p className="mt-5 text-xs text-gray-600">
+              No commitment. No spam.
             </p>
           </div>
         </div>
@@ -473,17 +642,27 @@ function CTABanner() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/5 py-12">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <ul className="flex items-center justify-center gap-6 text-sm text-gray-500">
-          {["Blog", "Careers", "Privacy"].map((label) => (
-            <li key={label}>
-              <Link href="#" className="hover:text-gray-300 transition-colors">
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <footer className="py-8 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="rounded-2xl px-8 py-5 flex items-center justify-between" style={glassSubtle}>
+          <span className="text-sm font-bold tracking-[-0.04em] font-mono">
+            <span className="text-[#00D4FF]">d</span>
+            <span className="text-white/50">flow</span>
+          </span>
+          <ul className="flex items-center gap-6 text-sm text-gray-500">
+            {[
+              { label: "Blog", href: "/blog" },
+              { label: "Careers", href: "#" },
+              { label: "Privacy", href: "#" },
+            ].map(({ label, href }) => (
+              <li key={label}>
+                <Link href={href} className="hover:text-gray-300 transition-colors">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </footer>
   );

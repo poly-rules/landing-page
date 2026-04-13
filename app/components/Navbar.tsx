@@ -8,29 +8,31 @@ export default function Navbar() {
 
   return (
     <>
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#0D0F14]/90 backdrop-blur-sm">
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 px-6 pt-4">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-3">
         {/* Logo */}
         <Link href="/" className="flex items-center group">
-          <span
-            className="text-xl font-bold tracking-[-0.04em] font-[family-name:var(--font-mono)] select-none"
-          >
+          <span className="text-xl font-bold tracking-[-0.04em] font-[family-name:var(--font-mono)] select-none">
             <span className="text-[#00D4FF] group-hover:brightness-125 transition-[filter]">d</span>
             <span className="text-white/90 group-hover:text-white transition-colors">flow</span>
           </span>
         </Link>
 
-        {/* Actions */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setRsvpOpen(true)}
-            className="inline-flex px-4 py-1.5 text-sm font-semibold bg-[#00D4FF] text-[#0D0F14] rounded-full hover:bg-[#00D4FF]/90 transition-colors"
-          >
-            Request Access
-          </button>
+        {/* Nav links */}
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+          <a href="#how-it-works" className="hover:text-[#00D4FF] transition-colors">How it works</a>
+          <a href="#by-role" className="hover:text-[#00D4FF] transition-colors">Who it&apos;s for</a>
+          <a href="#features" className="hover:text-[#00D4FF] transition-colors">Features</a>
         </div>
-      </nav>
 
+        {/* Actions */}
+        <button
+          onClick={() => setRsvpOpen(true)}
+          className="inline-flex px-5 py-2 text-sm font-semibold bg-[#7C3AED] text-white rounded-xl hover:bg-[#7C3AED]/90 transition-all shadow-lg hover:shadow-[#7C3AED]/40"
+        >
+          Request Access
+        </button>
+      </nav>
     </header>
 
     <RSVPModal open={rsvpOpen} onClose={() => setRsvpOpen(false)} />
