@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# dflow-landing
 
-## Getting Started
+Marketing and landing site for [Dflow](https://dflow.dev) — built with Next.js 16, Tailwind CSS v4, and TypeScript.
 
-First, run the development server:
+## Requirements
+
+- Node.js 18+
+- npm 9+
+
+## Setup
+
+```bash
+npm install
+```
+
+## Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Opens at [http://localhost:3000](http://localhost:3000). The page hot-reloads as you edit files.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Type-checks and produces an optimized production build in `.next/`.
 
-To learn more about Next.js, take a look at the following resources:
+## Preview production build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build && npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Lint
 
-## Deploy on Vercel
+```bash
+npm run lint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Blog
+
+Blog posts are plain Markdown files in `content/posts/`. The listing page at `/blog` and individual article pages at `/blog/<slug>` are generated automatically from those files.
+
+### Creating a new post
+
+1. Create a file in `content/posts/` named with a URL-friendly slug:
+
+   ```
+   content/posts/my-new-post.md
+   ```
+
+2. Add frontmatter at the top of the file:
+
+   ```md
+   ---
+   title: "Your Post Title"
+   excerpt: "One or two sentences shown in the listing and used as the meta description."
+   date: "2026-04-15"
+   author: "Author Name"
+   ---
+
+   Your content here. Standard Markdown is supported: **bold**, _italic_,
+   `inline code`, fenced code blocks, headings, lists, links, and horizontal rules.
+   ```
+
+3. Save the file. The post appears immediately in dev mode; for production, run `npm run build`.
+
+### Frontmatter fields
+
+| Field     | Required | Description                                      |
+|-----------|----------|--------------------------------------------------|
+| `title`   | yes      | Post title shown in the listing and `<h1>`       |
+| `excerpt` | yes      | Short summary shown in the listing and meta tags |
+| `date`    | yes      | ISO date (`YYYY-MM-DD`), used for sort order     |
+| `author`  | no       | Displayed next to the date                       |
+
+Posts are sorted by `date` descending — newest first.
+
+### File structure
+
+```
+content/
+  posts/
+    introducing-dflow.md   # example post
+    your-new-post.md
+
+lib/
+  posts.ts                 # getAllPosts() and getPost(slug) utilities
+
+app/
+  blog/
+    page.tsx               # listing  →  /blog
+    [slug]/
+      page.tsx             # article  →  /blog/<slug>
+```
