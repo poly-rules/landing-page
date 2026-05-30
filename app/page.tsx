@@ -233,7 +233,7 @@ function Problem() {
           </p>
           <p className="text-gray-500 leading-relaxed">
             Most automation tools promise to fix this but replace one black box
-            with another. Dflow is different: your team builds the rules, tracks every
+            with another. Poly is different: your team builds the rules, tracks every
             version, and understands every failure — without touching code.
           </p>
         </div>
@@ -260,7 +260,7 @@ function HowItWorks() {
       num: "03",
       accent: "#f59e0b",
       title: "Nothing broken ships",
-      desc: "Dflow checks every flow before it goes live. Errors are caught here, not in production.",
+      desc: "Poly checks every flow before it goes live. Errors are caught here, not in production.",
     },
     {
       num: "04",
@@ -503,7 +503,7 @@ function Testimonials() {
   const quotes = [
     {
       quote:
-        "We used to file a ticket every time a routing rule changed. Now the ops team handles it directly in Dflow. What used to take two weeks takes an afternoon.",
+        "We used to file a ticket every time a routing rule changed. Now the ops team handles it directly in Poly. What used to take two weeks takes an afternoon.",
       name: "Head of Operations",
       company: "Logistics company",
       accent: "#00D4FF",
@@ -517,7 +517,7 @@ function Testimonials() {
     },
     {
       quote:
-        "I was nervous about giving non-engineers a tool to publish business logic. Dflow's catalog and compile gate changed that. They build, we govern, nothing broken ships.",
+        "I was nervous about giving non-engineers a tool to publish business logic. Poly's catalog and compile gate changed that. They build, we govern, nothing broken ships.",
       name: "CTO",
       company: "E-commerce platform",
       accent: "#4ade80",
@@ -615,7 +615,7 @@ function CTABanner() {
               Your team shouldn&apos;t need a ticket to change a rule.
             </h2>
             <p className="text-lg text-gray-400 mb-8 max-w-xl mx-auto">
-              Dflow is in early access. Join the list — we&apos;ll reach out
+              Poly is in early access. Join the list — we&apos;ll reach out
               when your spot is ready.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

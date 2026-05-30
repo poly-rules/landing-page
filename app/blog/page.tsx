@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import { getAllPosts } from '../../lib/posts'
 
 export const metadata = {
-  title: 'Blog — Dflow',
+  title: 'Blog — Poly',
   description: 'Thoughts on data pipelines, declarative systems, and engineering.',
 }
 

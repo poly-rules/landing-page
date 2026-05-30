@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props) {
   const post = await getPost(slug)
   if (!post) return {}
   return {
-    title: `${post.title} — Dflow Blog`,
+    title: `${post.title} — Poly Blog`,
     description: post.excerpt,
   }
 }
@@ -124,7 +124,7 @@ export default async function BlogPost({ params }: Props) {
 
           {/* Body */}
           <article
-            className="prose-dflow"
+            className="prose-poly"
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
           />
         </div>

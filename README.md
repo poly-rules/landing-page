@@ -1,6 +1,6 @@
-# dflow-landing
+# poly-landing
 
-Marketing and landing site for [Dflow](https://dflow.dev) — built with Next.js 16, Tailwind CSS v4, and TypeScript.
+Marketing and landing site for [Poly](https://poly.dev) — built with Next.js 16, Tailwind CSS v4, and TypeScript.
 
 ## Requirements
 
@@ -87,7 +87,7 @@ Posts are sorted by `date` descending — newest first.
 ```
 content/
   posts/
-    introducing-dflow.md   # example post
+    introducing-poly.md   # example post
     your-new-post.md
 
 lib/
