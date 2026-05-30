@@ -16,7 +16,7 @@ export default function RSVPModal({ open, onClose }: Props) {
   // Drive CSS transition separately from mount/unmount
   useEffect(() => {
     if (open) requestAnimationFrame(() => setVisible(true));
-    else setVisible(false);
+    else requestAnimationFrame(() => setVisible(false));
   }, [open]);
 
   // Close on ESC
@@ -155,7 +155,7 @@ export default function RSVPModal({ open, onClose }: Props) {
                   Request early access
                 </h2>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  Dflow is in closed alpha. Leave your email and we&apos;ll
+                  Poly is in closed alpha. Leave your email and we&apos;ll
                   invite you when your spot is ready.
                 </p>
               </div>

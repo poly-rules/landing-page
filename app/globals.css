@@ -19,23 +19,23 @@ body {
 
 /* ── Blog article prose ─────────────────────────────────────────────────────── */
 
-.prose-dflow {
+.prose-poly {
   color: #9ca3af;
   line-height: 1.8;
   font-size: 1rem;
 }
-.prose-dflow p   { margin-bottom: 1.5rem; }
-.prose-dflow h2  { font-size: 1.5rem; font-weight: 800; color: #f3f4f6; margin: 2.5rem 0 1rem; letter-spacing: -0.02em; }
-.prose-dflow h3  { font-size: 1.15rem; font-weight: 700; color: #e5e7eb; margin: 2rem 0 0.75rem; }
-.prose-dflow a   { color: #00D4FF; text-decoration: underline; text-underline-offset: 3px; }
-.prose-dflow a:hover { opacity: 0.8; }
-.prose-dflow strong { color: #f3f4f6; font-weight: 600; }
-.prose-dflow ul  { list-style: none; padding: 0; margin-bottom: 1.5rem; }
-.prose-dflow ul li { padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem; }
-.prose-dflow ul li::before { content: '–'; position: absolute; left: 0; color: #00D4FF; }
-.prose-dflow hr  { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 2.5rem 0; }
-.prose-dflow em  { color: #6b7280; font-style: italic; }
-.prose-dflow pre {
+.prose-poly p   { margin-bottom: 1.5rem; }
+.prose-poly h2  { font-size: 1.5rem; font-weight: 800; color: #f3f4f6; margin: 2.5rem 0 1rem; letter-spacing: -0.02em; }
+.prose-poly h3  { font-size: 1.15rem; font-weight: 700; color: #e5e7eb; margin: 2rem 0 0.75rem; }
+.prose-poly a   { color: #00D4FF; text-decoration: underline; text-underline-offset: 3px; }
+.prose-poly a:hover { opacity: 0.8; }
+.prose-poly strong { color: #f3f4f6; font-weight: 600; }
+.prose-poly ul  { list-style: none; padding: 0; margin-bottom: 1.5rem; }
+.prose-poly ul li { padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem; }
+.prose-poly ul li::before { content: '–'; position: absolute; left: 0; color: #00D4FF; }
+.prose-poly hr  { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 2.5rem 0; }
+.prose-poly em  { color: #6b7280; font-style: italic; }
+.prose-poly pre {
   background: rgba(255,255,255,0.03);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -50,7 +50,7 @@ body {
   line-height: 1.7;
   color: #a5b4fc;
 }
-.prose-dflow code:not(pre code) {
+.prose-poly code:not(pre code) {
   background: rgba(0,212,255,0.08);
   border: 1px solid rgba(0,212,255,0.18);
   border-radius: 0.3rem;

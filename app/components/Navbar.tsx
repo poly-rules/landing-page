@@ -13,8 +13,8 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center group">
           <span className="text-xl font-bold tracking-[-0.04em] font-[family-name:var(--font-mono)] select-none">
-            <span className="text-[#00D4FF] group-hover:brightness-125 transition-[filter]">d</span>
-            <span className="text-white/90 group-hover:text-white transition-colors">flow</span>
+            <span className="text-[#00D4FF] group-hover:brightness-125 transition-[filter]">p</span>
+            <span className="text-white/90 group-hover:text-white transition-colors">oly</span>
           </span>
         </Link>
 

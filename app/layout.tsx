@@ -16,14 +16,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dflow — Business logic your team can build and own",
+  title: "Poly — Business logic your team can build and own",
   description:
     "A visual workflow editor that lets business teams build, validate, and publish their own rules — without writing code or waiting on engineering.",
   openGraph: {
-    title: "Dflow — Business logic your team can build and own",
+    title: "Poly — Business logic your team can build and own",
     description:
       "A visual workflow editor that lets business teams build, validate, and publish their own rules — without writing code or waiting on engineering.",
-    images: ["/dflow-logo.png"],
+    images: ["/poly-logo.png"],
   },
 };
 
