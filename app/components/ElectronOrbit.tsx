@@ -5,6 +5,7 @@ export default function ElectronOrbit() {
         viewBox="0 0 510 368"
         className="w-full h-auto block"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
         <defs>
           {/* Panel gradient */}
@@ -125,7 +126,7 @@ export default function ElectronOrbit() {
         </circle>
 
         {/* ── Nucleus core ── */}
-        <circle cx="255" cy="184" r="18" fill="url(#eo-core)"
+        <circle cx="255" cy="184" r="16" fill="url(#eo-core)"
           stroke="#00D4FF" strokeWidth="1.5" strokeOpacity="0.6">
           <animate attributeName="r" values="16;20;16" dur="2.4s" repeatCount="indefinite" />
         </circle>
