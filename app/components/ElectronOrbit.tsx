@@ -162,12 +162,7 @@ export default function ElectronOrbit() {
             dur="5s" begin="0.5s" repeatCount="indefinite" />
         </text>
 
-        {/* ── Legend strip ── */}
-        <rect x="22" y="322" width="466" height="28" rx="7" fill="#0D0F14" opacity="0.88" />
-        <text x="255" y="340" textAnchor="middle" fill="#6b7280" fontSize="10.5"
-          fontFamily="var(--font-mono), JetBrains Mono, monospace">
-          electron activity · quantum data flow
-        </text>
+
       </svg>
     </div>
   )

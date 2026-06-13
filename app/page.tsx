@@ -143,14 +143,7 @@ function Hero() {
             <div className="rounded-2xl overflow-hidden border border-white/5 shadow-inner">
               <ElectronOrbit />
             </div>
-            {/* Floating status badge */}
-            <div
-              className="absolute top-8 left-8 hidden lg:flex items-center gap-3 px-4 py-2 rounded-xl"
-              style={glass}
-            >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-xs font-medium text-white/80">Live preview</span>
-            </div>
+
           </div>
         </div>
       </div>
