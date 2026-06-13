@@ -70,7 +70,7 @@ export default function ElectronOrbit() {
             <animate attributeName="stroke-dashoffset" from="0" to="-60"
               dur="1.8s" repeatCount="indefinite" />
           </ellipse>
-          <g>
+          <g className="eo-electron">
             <animateMotion dur="7s" repeatCount="indefinite">
               <mpath href="#eo-path-a" />
             </animateMotion>
@@ -89,7 +89,7 @@ export default function ElectronOrbit() {
             <animate attributeName="stroke-dashoffset" from="0" to="68"
               dur="2.4s" repeatCount="indefinite" />
           </ellipse>
-          <g>
+          <g className="eo-electron">
             {/* keyPoints="1;0" reverses direction for visual variety */}
             <animateMotion dur="9s" repeatCount="indefinite"
               keyPoints="1;0" keyTimes="0;1" calcMode="linear">
@@ -110,7 +110,7 @@ export default function ElectronOrbit() {
             <animate attributeName="stroke-dashoffset" from="0" to="-46"
               dur="1.4s" repeatCount="indefinite" />
           </ellipse>
-          <g>
+          <g className="eo-electron">
             <animateMotion dur="5.5s" repeatCount="indefinite">
               <mpath href="#eo-path-c" />
             </animateMotion>
