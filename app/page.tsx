@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
 import RSVPButton from "./components/RSVPButton";
+import ElectronOrbit from "./components/ElectronOrbit";
 
 // ─── Glass style constants ────────────────────────────────────────────────────
 
@@ -87,16 +88,6 @@ const icons = {
 function Hero() {
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-      {/* Background video */}
-      <video
-        src="/high-end-tech.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        style={{ opacity: 0.18 }}
-      />
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0D0F14]/60 via-[#0D0F14]/40 to-[#0D0F14] pointer-events-none" />
 
@@ -145,19 +136,12 @@ function Hero() {
           </div>
         </div>
 
-        {/* Video showcase */}
+        {/* Hero animation */}
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-[#7C3AED] to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 pointer-events-none" />
           <div className="relative rounded-3xl p-2 md:p-4 shadow-2xl overflow-hidden" style={glass}>
             <div className="rounded-2xl overflow-hidden border border-white/5 shadow-inner">
-              <video
-                src="https://opal.google/board/blobs/e1b527cd-2e8e-4ff5-9c17-88543813ae97"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-auto block"
-              />
+              <ElectronOrbit />
             </div>
             {/* Floating status badge */}
             <div
