@@ -1,12 +1,12 @@
-export default function ElectronOrbit() {
+export default function ElectronOrbit({ className = "w-full h-auto block" }: { className?: string }) {
   return (
-    <div className="relative w-full">
-      <svg
-        viewBox="0 0 510 368"
-        className="w-full h-auto block"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
+    <svg
+      viewBox="0 0 510 368"
+      className={className}
+      preserveAspectRatio="xMidYMid slice"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
         <defs>
           {/* Panel gradient */}
           <linearGradient id="eo-panel" x1="0" y1="0" x2="0" y2="1">
@@ -163,7 +163,6 @@ export default function ElectronOrbit() {
         </text>
 
 
-      </svg>
-    </div>
+    </svg>
   )
 }

@@ -91,8 +91,12 @@ function Hero() {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0D0F14]/60 via-[#0D0F14]/40 to-[#0D0F14] pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-        {/* Centered text block */}
+      {/* Animation — fills hero background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ opacity: 0.45 }}>
+        <ElectronOrbit className="w-full h-full" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           {/* Glass badge */}
           <div
@@ -125,7 +129,6 @@ function Hero() {
               <Icon d={icons.arrowRight} className="w-4 h-4" />
               Join the early access list
             </RSVPButton>
-            {/* Ghost glass CTA */}
             <a
               href="#how-it-works"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-gray-300 font-medium hover:text-white transition-colors text-sm"
@@ -133,17 +136,6 @@ function Hero() {
             >
               See how it works
             </a>
-          </div>
-        </div>
-
-        {/* Hero animation */}
-        <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#7C3AED] to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 pointer-events-none" />
-          <div className="relative rounded-3xl p-2 md:p-4 shadow-2xl overflow-hidden" style={glass}>
-            <div className="rounded-2xl overflow-hidden border border-white/5 shadow-inner">
-              <ElectronOrbit />
-            </div>
-
           </div>
         </div>
       </div>
