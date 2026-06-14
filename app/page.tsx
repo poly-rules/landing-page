@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
 import RSVPButton from "./components/RSVPButton";
+import ElectronOrbit from "./components/ElectronOrbit";
 
 // ─── Glass style constants ────────────────────────────────────────────────────
 
@@ -87,21 +88,15 @@ const icons = {
 function Hero() {
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-      {/* Background video */}
-      <video
-        src="/high-end-tech.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        style={{ opacity: 0.18 }}
-      />
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0D0F14]/60 via-[#0D0F14]/40 to-[#0D0F14] pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-        {/* Centered text block */}
+      {/* Animation — fills hero background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ opacity: 0.45 }}>
+        <ElectronOrbit className="w-full h-full" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           {/* Glass badge */}
           <div
@@ -134,7 +129,6 @@ function Hero() {
               <Icon d={icons.arrowRight} className="w-4 h-4" />
               Join the early access list
             </RSVPButton>
-            {/* Ghost glass CTA */}
             <a
               href="#how-it-works"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-gray-300 font-medium hover:text-white transition-colors text-sm"
@@ -142,31 +136,6 @@ function Hero() {
             >
               See how it works
             </a>
-          </div>
-        </div>
-
-        {/* Video showcase */}
-        <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#7C3AED] to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 pointer-events-none" />
-          <div className="relative rounded-3xl p-2 md:p-4 shadow-2xl overflow-hidden" style={glass}>
-            <div className="rounded-2xl overflow-hidden border border-white/5 shadow-inner">
-              <video
-                src="https://opal.google/board/blobs/e1b527cd-2e8e-4ff5-9c17-88543813ae97"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-auto block"
-              />
-            </div>
-            {/* Floating status badge */}
-            <div
-              className="absolute top-8 left-8 hidden lg:flex items-center gap-3 px-4 py-2 rounded-xl"
-              style={glass}
-            >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-xs font-medium text-white/80">Live preview</span>
-            </div>
           </div>
         </div>
       </div>
