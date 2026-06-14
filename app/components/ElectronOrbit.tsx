@@ -40,15 +40,6 @@ export default function ElectronOrbit({ className = "w-full h-auto block" }: { c
           <filter id="eo-glow-lg" x="-100%" y="-100%" width="300%" height="300%">
             <feGaussianBlur stdDeviation="14" />
           </filter>
-
-          {/*
-            Orbit paths for <animateMotion> — un-rotated ellipses centered at (255,184).
-            Rotation is applied via the parent <g> transform; these paths are used as-is
-            in that local coordinate space, producing the correct rotated orbit in screen space.
-          */}
-          <path id="eo-path-a" d="M 395 184 A 140 55 0 1 0 394.999 184" fill="none" />
-          <path id="eo-path-b" d="M 355 184 A 100 90 0 1 0 354.999 184" fill="none" />
-          <path id="eo-path-c" d="M 335 184 A 80  40 0 1 0 334.999 184" fill="none" />
         </defs>
 
         {/* ── Panel background ── */}
@@ -71,9 +62,8 @@ export default function ElectronOrbit({ className = "w-full h-auto block" }: { c
               dur="1.8s" repeatCount="indefinite" />
           </ellipse>
           <g className="eo-electron">
-            <animateMotion dur="7s" repeatCount="indefinite">
-              <mpath href="#eo-path-a" />
-            </animateMotion>
+            <animateMotion dur="7s" repeatCount="indefinite"
+              path="M 395 184 A 140 55 0 1 0 394.999 184" />
             <circle r="12" fill="#00D4FF" opacity="0.3"  filter="url(#eo-glow-sm)" />
             <circle r="4"  fill="#00D4FF" opacity="0.9" />
           </g>
@@ -90,11 +80,9 @@ export default function ElectronOrbit({ className = "w-full h-auto block" }: { c
               dur="2.4s" repeatCount="indefinite" />
           </ellipse>
           <g className="eo-electron">
-            {/* keyPoints="1;0" reverses direction for visual variety */}
             <animateMotion dur="9s" repeatCount="indefinite"
-              keyPoints="1;0" keyTimes="0;1" calcMode="linear">
-              <mpath href="#eo-path-b" />
-            </animateMotion>
+              keyPoints="1;0" keyTimes="0;1" calcMode="linear"
+              path="M 355 184 A 100 90 0 1 0 354.999 184" />
             <circle r="10"  fill="#c084fc" opacity="0.28" filter="url(#eo-glow-sm)" />
             <circle r="3.5" fill="#c084fc" opacity="0.9" />
           </g>
@@ -111,9 +99,8 @@ export default function ElectronOrbit({ className = "w-full h-auto block" }: { c
               dur="1.4s" repeatCount="indefinite" />
           </ellipse>
           <g className="eo-electron">
-            <animateMotion dur="5.5s" repeatCount="indefinite">
-              <mpath href="#eo-path-c" />
-            </animateMotion>
+            <animateMotion dur="5.5s" repeatCount="indefinite"
+              path="M 335 184 A 80 40 0 1 0 334.999 184" />
             <circle r="9"   fill="#4ade80" opacity="0.25" filter="url(#eo-glow-sm)" />
             <circle r="3.5" fill="#4ade80" opacity="0.9" />
           </g>
